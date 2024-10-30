@@ -761,4 +761,10 @@ FactoryBot.define do
     ta_id 1
     course_id 1
   end
+  
+factory :meeting_date, class: MeetingDate do
+    date { Date.today } # Default to today's date
+    team # Assumes you have a team association set up
+  end
+  
 end

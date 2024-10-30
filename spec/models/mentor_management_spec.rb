@@ -1,3 +1,5 @@
+#require 'rails_helper'
+
 describe MentorManagement do
   # using let! so that state is automatically set up before each example group
   # this could also be accomplished with before(:each) and instance methods
@@ -165,6 +167,14 @@ describe MentorManagement do
         # There should be no assigning of mentors
         expect(Team).to receive(:add_member).exactly(0).times
       end
+	    
+   describe '#update_mentor_state' do
+      it 'does not assign if `auto_assign_mentor` is false' do
+       no_mentor_assignment = create(:assignment, auto_assign_mentor: false)
+
+       expect(Team).not_to receive(:add_member)
+       MentorManagement.assign_mentor(no_mentor_assignment.id, team.id)
+      end   
     end
 
     context 'when the assignment or team already have a topic' do

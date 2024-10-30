@@ -1,6 +1,13 @@
 Expertiza
 =========
 
+MMM Last Semester's Pull Requests
+Pull Request: (https://github.com/expertiza/expertiza/pull/2769)
+Pull Request: (https://github.com/expertiza/expertiza/pull/2772)
+
+Their Wiki (https://wiki.expertiza.ncsu.edu/index.php?title=CSC/ECE_517_Spring_2024_-_E2403_Mentor-Meeting_Management)
+
+
 [![Build Status](https://travis-ci.org/expertiza/expertiza.svg?branch=main)](https://travis-ci.org/expertiza/expertiza)
 [![Coverage Status](https://coveralls.io/repos/github/expertiza/expertiza/badge.svg?branch=main)](https://coveralls.io/github/expertiza/expertiza?branch=main)
 [![Maintainability](https://api.codeclimate.com/v1/badges/23b8a211854207919986/maintainability)](https://codeclimate.com/github/expertiza/expertiza/maintainability)

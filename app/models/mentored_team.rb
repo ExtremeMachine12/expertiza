@@ -12,7 +12,20 @@ class MentoredTeam < AssignmentTeam
           TeamUserNode.create(parent_id: parent.id, node_object_id: t_user.id)
           add_participant(parent_id, user)
           ExpertizaLogger.info LoggerMessage.new('Model:Team', user.name, "Added member to the team #{id}")
+         
+          assignment_name = _assignment_id ? Assignment.find(_assignment_id).name.to_s : ""
+          # mentor only
+          if MentorManagement.user_a_mentor?(user) && !user.is_a?(Participant)
+            MailerHelper.send_team_confirmation_mail_to_user(user, "[Expertiza] Added to a Team", "mentor_added_to_team", "#{name}", assignment_name).deliver
+          # participant only
+          elsif !MentorManagement.user_a_mentor?(user) && user.is_a?(Participant)
+            MailerHelper.send_team_confirmation_mail_to_user(user, "[Expertiza] Added to a Team", "user_added_to_team", "#{name}", assignment_name).deliver
+          # dual case
+          elsif MentorManagement.user_a_mentor?(user) && user.is_a?(Participant)
+            MailerHelper.send_team_confirmation_mail_to_user(user, "[Expertiza] Added to a Team", "dual_role_added_to_team", "#{name}", assignment_name).deliver
+          end
         end
+
         if can_add_member
             MentorManagement.assign_mentor(_assignment_id, id)
         end
